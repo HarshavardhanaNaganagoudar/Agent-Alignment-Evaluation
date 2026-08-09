@@ -29,3 +29,7 @@ Instead, this project documents observable behaviors and asks:
 
 > What does an autonomous agent do when undesirable behavior becomes
 > instrumentally useful for achieving its objective?
+
+# Deceptive behaviour findings and evidence
+
+**[Findings](./findings)**
