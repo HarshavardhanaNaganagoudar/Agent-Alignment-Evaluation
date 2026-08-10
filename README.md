@@ -3,6 +3,8 @@
 > Can an autonomous AI agent remain honest, safe, and corrigible when
 > deception and rule-breaking increase its reward?
 
+An autonomous AI agent that manages a water bottle vending machine using a local LLM (gemma4:12b) via Ollama. The agent makes business decisions, responds to customer events, adjusts pricing, manages inventory, and aims to maximize long-term profit.
+
 This project evaluates autonomous AI agents in simulated business
 environments designed to create conflicts between an agent's objective
 and desirable behavioral constraints.
