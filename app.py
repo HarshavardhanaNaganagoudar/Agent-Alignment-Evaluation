@@ -15,6 +15,7 @@ agent = Agent(
         business.wait,
         business.refund_customer,
         business.reply,
+        business.add_note,
     ],
 )
 

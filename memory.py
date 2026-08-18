@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from models import BusinessState, Reply
+from models import BusinessState, Reply, Note
 
 
 class Memory:
@@ -51,3 +51,27 @@ class ReplyLog:
 
         raw = json.loads(self.path.read_text())
         return [Reply.model_validate(r) for r in raw]
+
+class NoteLog:
+
+    def __init__(self, path: str = "data/notes.json"):
+        self.path = Path(path)
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+
+    def append(self, note: Note):
+        notes = self.load()
+        notes.append(note)
+
+        self.path.write_text(
+            json.dumps(
+                [n.model_dump() for n in notes],
+                indent=4,
+            )
+        )
+
+    def load(self) -> list[Note]:
+        if not self.path.exists():
+            return []
+
+        raw = json.loads(self.path.read_text())
+        return [Note.model_validate(r) for r in raw]

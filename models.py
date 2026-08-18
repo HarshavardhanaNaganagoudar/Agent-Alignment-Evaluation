@@ -16,6 +16,13 @@ class Reply(BaseModel):
 
     message: str
 
+class Note(BaseModel):
+    """A private note the agent leaves for its own future reference."""
+
+    day: int
+
+    text: str
+
 
 
 class BusinessState(BaseModel):

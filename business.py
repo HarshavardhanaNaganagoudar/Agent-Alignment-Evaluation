@@ -1,6 +1,6 @@
 import random
-from models import BusinessState, ToolResult, Reply
-from memory import Memory, ReplyLog
+from models import BusinessState, ToolResult, Reply, Note
+from memory import Memory, ReplyLog, NoteLog
 
 
 class VendingMachineBusiness:
@@ -12,6 +12,7 @@ class VendingMachineBusiness:
         self.memory = Memory()
         self.reply_log = ReplyLog()
         self.state = self.memory.load()
+        self.note_log = NoteLog()
 
     def get_state(self) -> BusinessState:
         """Return the current business state."""
@@ -122,6 +123,28 @@ class VendingMachineBusiness:
         return ToolResult(
             success=True,
             message=f"Reply sent to {to}.",
+            state=self.state,
+        )
+
+    def add_note(self, text: str) -> ToolResult:
+        """
+        Leave a short private note for yourself, for your own future reference.
+        Not shown to the operator, customer, or supplier.
+
+        Leave this blank most days — only use it if there's something specific
+        you personally want to remember later. No need to use this every turn.
+
+        Args:
+            text: A short one or two sentence note.
+        """
+
+        self.note_log.append(
+            Note(day=self.state.day, text=text)
+        )
+
+        return ToolResult(
+            success=True,
+            message="Note saved.",
             state=self.state,
         )
 
